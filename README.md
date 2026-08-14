@@ -1,6 +1,6 @@
-# Steam Reviews — NLP Pipeline
+# Steam Reviews NLP Pipeline
 
-An end-to-end NLP study of **434,891 Steam game reviews**, reading the same corpus four different ways — classification, fine-tuning, topic modelling and aspect-based sentiment — and, at each step, weighing what each method adds against what it costs to run.
+An end-to-end NLP study of **434,891 Steam game reviews**, reading the same corpus four different ways (classification, fine-tuning, topic modelling and aspect-based sentiment), and at each step weighing what each method adds against what it costs to run.
 
 The [dataset](https://www.kaggle.com/datasets/luthfim/steam-reviews-dataset) (Luthfi Mahendra, Kaggle) pairs each review with the player's own *Recommended / Not Recommended* vote, which supervises the classifiers without any manual labelling.
 
@@ -19,7 +19,7 @@ The six notebooks run in order; each writes processed artifacts that the next on
 
 ## Key findings
 
-- **Fine-tuning pays off — and a simple baseline beats zero-shot.** On a 5,000-review held-out set:
+- **Fine-tuning pays off, and a simple baseline beats zero-shot.** On a 5,000-review held-out set:
 
   | Model | Accuracy | Macro F1 |
   |-------|:--------:|:--------:|
@@ -28,10 +28,10 @@ The six notebooks run in order; each writes processed artifacts that the next on
   | DistilBERT (zero-shot, SST-2) | 0.750 | 0.742 |
   | **DistilBERT (fine-tuned)** | **0.884** | **0.871** |
 
-  The zero-shot transformer is *beaten by a plain TF-IDF + LogReg* — pretrained sentiment doesn't transfer cleanly to Steam's irony and domain slang. Fine-tuning on the corpus closes that gap and wins overall.
+  The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sentiment doesn't transfer cleanly to Steam's irony and domain slang. Fine-tuning on the corpus closes that gap and wins overall.
 - **Reviews are genuinely multi-aspect.** LLM extraction on a targeted 400-review sample returned **2.36 aspect verdicts per review** (943 mentions), something the single-verdict classifier and single-topic model both had to flatten. 98.5% of the evidence quotes were found verbatim in the source, so the output rests on real text rather than paraphrase.
 - **Gameplay is the draw; price and performance are the grievance.** Gameplay is the most-discussed aspect and skews positive (50%); `price_value` (82% negative) and `performance` (81% negative) are the sharpest pain points.
-- **The praise-and-complaint pattern recurs:** ~18% of reviews carry both a positive and a negative aspect, most often gameplay praised against multiplayer or performance criticised — a "want to like it but can't fully" profile.
+- **The praise-and-complaint pattern recurs:** ~18% of reviews carry both a positive and a negative aspect, most often gameplay praised against multiplayer or performance criticised, a "want to like it but can't fully" profile.
 
 ## Tech stack
 
@@ -45,12 +45,12 @@ The notebooks were built for **Google Colab** with data on **Google Drive**.
    ```
    MyDrive/Colab Notebooks/Projets/steam_reviews/data/raw/steam_reviews.csv
    ```
-2. Open each notebook in Colab and run in order (01 → 06). Notebook 02 writes the processed corpus that 03–06 consume.
-3. Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in **Colab → Secrets** (🔑) with notebook access enabled. Its free tier is rate-limited (~5 requests/min), so the extraction is paced accordingly.
+2. Open each notebook in Colab and run in order (01 to 06). Notebook 02 writes the processed corpus that 03 to 06 consume.
+3. Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets** panel (🔑) with notebook access enabled. Its free tier is rate-limited (~5 requests/min), so the extraction is paced accordingly.
 
 Dependencies install from the notebooks themselves (`!pip install ...`); `requirements.txt` lists them for a local run.
 
-> **Note:** the raw and processed data files are **not** committed (see `.gitignore`) — download the dataset from Kaggle to reproduce.
+> **Note:** the raw and processed data files are **not** committed (see `.gitignore`); download the dataset from Kaggle to reproduce.
 
 ## Project structure
 
@@ -74,5 +74,5 @@ steam-reviews/
 
 ## Author
 
-**Juliette Bouli-Mengue** — Master's in Data Science.
+**Juliette Bouli-Mengue**, Master's in Data Science.
 Dataset © Luthfi Mahendra, via Kaggle.
