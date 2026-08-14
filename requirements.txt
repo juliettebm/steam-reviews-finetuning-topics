@@ -1,0 +1,31 @@
+# Core data / plotting
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+
+# Classic ML
+scikit-learn
+
+# NLP
+nltk
+
+# Transformers (notebooks 03–04)
+transformers
+torch
+datasets
+accelerate
+
+# Topic modelling (notebook 05)
+bertopic
+sentence-transformers
+umap-learn
+hdbscan
+
+# LLM aspect extraction (notebook 06)
+google-genai
+
+# Notebook environment
+ipython
+jupyter
