@@ -1,4 +1,4 @@
-# 🎮 Steam Reviews NLP
+# Steam Reviews NLP
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-DistilBERT-yellow?logo=huggingface&logoColor=white)](https://huggingface.co/docs/transformers)
@@ -80,7 +80,7 @@ MyDrive/Colab Notebooks/Projets/steam_reviews/data/raw/steam_reviews.csv
 
 Open each notebook in Colab and run in order (01 to 06). Notebook 02 writes the processed corpus that 03 to 06 consume. Dependencies install from the notebooks themselves (`!pip install ...`); `requirements.txt` lists them for a local run.
 
-Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets** panel (🔑) with notebook access enabled. Its free tier is rate-limited (~5 requests/min), so the extraction is paced accordingly.
+Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets** panel () with notebook access enabled. Its free tier is rate-limited (~5 requests/min), so the extraction is paced accordingly.
 
 ---
 
