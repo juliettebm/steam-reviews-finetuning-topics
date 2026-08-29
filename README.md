@@ -24,7 +24,7 @@ A game review is rarely one-dimensional: a player can praise the gameplay and co
 | Question | Answered in | Short answer |
 | --- | --- | --- |
 | **What do players actually say?** | 01, 05, 06 | Reviews are genuinely multi-aspect (2.36 verdicts per review); themes split into stable families — 14 to 24 complaint topics and 36 praise topics across runs (BERTopic's exact count varies; see below). |
-| **How reliably can a model tell praise from complaint?** | 03, 04 | A fine-tuned DistilBERT reaches **0.884 accuracy / 0.871 macro F1**, well above a zero-shot transformer (0.750) and a majority-class floor (0.678). |
+| **How reliably can a model tell praise from complaint?** | 03, 04 | A fine-tuned DistilBERT reaches **0.886 accuracy / 0.873 macro F1**, well above a zero-shot transformer (0.750) and a majority-class floor (0.678). |
 | **Which themes drive satisfaction or frustration across titles?** | 05, 06 | Gameplay drives satisfaction (50% positive); `price_value` (82% negative) and `performance` (81% negative) drive frustration, consistently across the top games. |
 
 ---
@@ -99,16 +99,16 @@ Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets*
 
 ### Classification benchmark (5,000-review reporting set)
 
-This set selects nothing. Checkpoint selection runs on a separate 3,000-review validation slice taken from the training sample, so the figures below are measured on data that played no part in choosing the model.
+This set selects nothing. Checkpoint selection runs on a separate 3,000-review validation slice taken from the training sample, so the figures below are measured on data that played no part in choosing the model. These are the numbers from that protocol, not the earlier run where the reporting set doubled as the checkpoint-selection set.
 
 | Model | Accuracy | Macro F1 |
 | --- | :---: | :---: |
 | Majority class | 0.678 | 0.404 |
-| TF-IDF + Logistic Regression | 0.842 | 0.824 |
+| TF-IDF + Logistic Regression | 0.843 | 0.826 |
 | DistilBERT (zero-shot, SST-2) | 0.750 | 0.742 |
-| **DistilBERT (fine-tuned)** | **0.884** | **0.871** |
+| **DistilBERT (fine-tuned)** | **0.886** | **0.873** |
 
-The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sentiment does not transfer cleanly to Steam's irony and slang. Fine-tuning (5.8 min on a T4) closes the gap and wins overall, fixing 843 evaluation reviews while breaking 171, a net gain of 672.
+The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sentiment does not transfer cleanly to Steam's irony and slang. Fine-tuning (6.3 min on a T4) closes the gap and wins overall, fixing 858 evaluation reviews while breaking 176, a net gain of 682. The fix moved these numbers by about 0.2 points of accuracy from the earlier, leakage-affected run — small in this case, because two epochs left little room for the checkpoint choice to overfit, but the protocol is now honest regardless of how large the effect turned out to be.
 
 ### Topic modelling
 
