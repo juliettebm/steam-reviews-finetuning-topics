@@ -108,7 +108,7 @@ Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets*
 
 ### Classification benchmark (5,000-review reporting set)
 
-This set selects nothing. Checkpoint selection runs on a separate 3,000-review validation slice taken from the training sample, so the figures below are measured on data that played no part in choosing the model. These are the numbers from that protocol, not the earlier run where the reporting set doubled as the checkpoint-selection set.
+This set selects nothing. Checkpoint selection runs on a separate 3,000-review validation slice taken from the training sample, so the figures below are measured on data that played no part in choosing the model.
 
 | Model | Accuracy | Macro F1 |
 | --- | :---: | :---: |
@@ -117,7 +117,7 @@ This set selects nothing. Checkpoint selection runs on a separate 3,000-review v
 | DistilBERT (zero-shot, SST-2) | 0.750 | 0.742 |
 | **DistilBERT (fine-tuned)** | **0.886** | **0.873** |
 
-The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sentiment does not transfer cleanly to Steam's irony and slang. Fine-tuning (6.3 min on a T4) closes the gap and wins overall, fixing 858 evaluation reviews while breaking 176, a net gain of 682. The fix moved these numbers by about 0.2 points of accuracy from the earlier, leakage-affected run — small in this case, because two epochs left little room for the checkpoint choice to overfit, but the protocol is now honest regardless of how large the effect turned out to be.
+The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sentiment does not transfer cleanly to Steam's irony and slang. Fine-tuning (6.3 min on a T4) closes the gap and wins overall, fixing 858 evaluation reviews while breaking 176, a net gain of 682.
 
 ### Topic modelling
 
