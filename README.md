@@ -89,7 +89,7 @@ Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets*
 1. **Ingestion and audit** (01): load 434,891 reviews, quantify duplicates, missing values, repeated texts and promotional notices, then univariate and bivariate EDA (Mann-Whitney tests on playtime, length, helpfulness against the recommendation).
 2. **Preprocessing** (02): drop empty reviews, strip the free-product notice, deduplicate long repeats, filter very short reviews, build two cleaning strategies (`review_raw` minimal, `review_clean` heavy), and engineer features (playtime tiers, engagement flags).
 3. **Baseline** (03): zero-shot DistilBERT (SST-2) on a stratified 5,000-review evaluation set, with a diagnostic error analysis on length, technical vocabulary and sarcasm.
-4. **Fine-tuning and benchmark** (04): a TF-IDF + logistic-regression baseline and a fine-tuned DistilBERT, compared against the zero-shot model and a majority-class floor on the same evaluation set, plus a cost comparison.
+4. **Fine-tuning and benchmark** (04): a TF-IDF + logistic-regression baseline and a fine-tuned DistilBERT, compared against the zero-shot model and a majority-class floor on the same evaluation set, plus a cost comparison. The training sample is split three ways: 30,000 reviews to train, 3,000 held out to select the checkpoint, and the 5,000-review set from step 3 kept for reporting only. Exclusion from the training pool is done on the review text rather than on the index, because 12.64% of reviews share their text with another row and an index-based split would not catch them.
 5. **Topic modelling** (05): BERTopic (sentence embeddings + UMAP + HDBSCAN) run separately on complaint and praise sub-corpora, read against game and playtime metadata.
 6. **Aspect-based sentiment** (06): Gemini with structured output extracts, per review, each of six aspects and its sentiment, with an evidence-quote verification step before aggregation.
 
@@ -97,7 +97,9 @@ Notebook 06 calls the Gemini API: add a `GEMINI_API_KEY` in the **Colab Secrets*
 
 ## Key Results
 
-### Classification benchmark (5,000-review held-out set)
+### Classification benchmark (5,000-review reporting set)
+
+This set selects nothing. Checkpoint selection runs on a separate 3,000-review validation slice taken from the training sample, so the figures below are measured on data that played no part in choosing the model.
 
 | Model | Accuracy | Macro F1 |
 | --- | :---: | :---: |
