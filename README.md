@@ -42,7 +42,7 @@ A game review is rarely one-dimensional: a player can praise the gameplay and co
 ## Project Structure
 
 ```
-steam-reviews-nlp/
+steam-reviews-finetuning-topics/
 │
 ├── 01_data_ingestion_eda.ipynb             # ingestion, quality audit, EDA
 ├── 02_preprocessing_pipeline.ipynb         # cleaning, boilerplate removal, feature engineering
@@ -73,8 +73,8 @@ The Drive mount is skipped automatically outside Colab, so all six notebooks als
 ### 1. Clone
 
 ```bash
-git clone https://github.com/juliettebm/steam-reviews-nlp.git
-cd steam-reviews-nlp
+git clone https://github.com/juliettebm/steam-reviews-finetuning-topics.git
+cd steam-reviews-finetuning-topics
 ```
 
 ### 2. Data
