@@ -68,7 +68,7 @@ import os
 os.environ["STEAM_ROOT"] = "/content/drive/MyDrive/<your path>"
 ```
 
-The Drive mount is skipped automatically outside Colab, so the notebooks also open and run against a local directory. Notebook 04 still carries the Drive path in its first cell and will get the same treatment on its next run.
+The Drive mount is skipped automatically outside Colab, so all six notebooks also open and run against a local directory.
 
 ### 1. Clone
 
