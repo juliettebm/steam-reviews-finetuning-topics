@@ -23,7 +23,7 @@ A game review is rarely one-dimensional: a player can praise the gameplay and co
 
 | Question | Answered in | Short answer |
 | --- | --- | --- |
-| **What do players actually say?** | 01, 05, 06 | Reviews are genuinely multi-aspect (2.36 verdicts per review); themes split cleanly into 19 complaint topics and 36 praise topics. |
+| **What do players actually say?** | 01, 05, 06 | Reviews are genuinely multi-aspect (2.36 verdicts per review); themes split into stable families — 14 to 24 complaint topics and 36 praise topics across runs (BERTopic's exact count varies; see below). |
 | **How reliably can a model tell praise from complaint?** | 03, 04 | A fine-tuned DistilBERT reaches **0.884 accuracy / 0.871 macro F1**, well above a zero-shot transformer (0.750) and a majority-class floor (0.678). |
 | **Which themes drive satisfaction or frustration across titles?** | 05, 06 | Gameplay drives satisfaction (50% positive); `price_value` (82% negative) and `performance` (81% negative) drive frustration, consistently across the top games. |
 
@@ -112,7 +112,7 @@ The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sen
 
 ### Topic modelling
 
-Run on ~20,000 complaints and ~20,000 praise reviews: **19 complaint topics** (30.7% unassigned) and **36 praise topics** (42.6% unassigned), with 40,012 topic-annotated reviews exported.
+Run on ~20,000 complaints and ~20,000 praise reviews: **complaint topics vary from run to run (14–24 observed, 24 in the committed run, 39.1% unassigned)** — UMAP and HDBSCAN are not fully seed-stable, and notebook 05 documents this rather than papering over it — against a stable **36 praise topics** (42.6% unassigned). 40,012 topic-annotated reviews exported.
 
 ### Aspect-based sentiment (targeted 400-review sample)
 
