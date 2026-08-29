@@ -119,6 +119,8 @@ This set selects nothing. Checkpoint selection runs on a separate 3,000-review v
 
 The zero-shot transformer is *beaten by a plain TF-IDF + LogReg*: pretrained sentiment does not transfer cleanly to Steam's irony and slang. Fine-tuning (6.3 min on a T4) closes the gap and wins overall, fixing 858 evaluation reviews while breaking 176, a net gain of 682.
 
+**Why 30,000 training reviews and not all 434,891?** Measured rather than assumed (section 4.3). Macro F1 goes 0.821 → 0.851 → 0.865 → 0.870 across 5k / 10k / 20k / 30k: each doubling buys about half the previous gain. The last 10,000 reviews are worth 0.006, and extrapolating that slope, the full corpus would add well under a point for roughly ninety minutes of compute. The bottleneck is no longer the amount of data — it is the label, a single binary vote standing in for a review carrying 2.36 distinct verdicts on average.
+
 ### Topic modelling
 
 Run on ~20,000 complaints and ~20,000 praise reviews: **complaint topics vary from run to run (14–24 observed, 24 in the committed run, 39.1% unassigned)** — UMAP and HDBSCAN are not fully seed-stable, and notebook 05 documents this rather than papering over it — against a stable **36 praise topics** (42.6% unassigned). 40,012 topic-annotated reviews exported.
