@@ -59,7 +59,16 @@ steam-reviews-nlp/
 
 ## Reproduce
 
-The notebooks were built for **Google Colab** with data on **Google Drive**.
+The notebooks were built for **Google Colab** with data on **Google Drive**. The fine-tuning step needs a GPU, so Colab is the target rather than a local machine.
+
+Each notebook resolves its data directory from the `STEAM_ROOT` environment variable, falling back to the Drive path they were written against. Set it before running the first cell if your data lives elsewhere:
+
+```python
+import os
+os.environ["STEAM_ROOT"] = "/content/drive/MyDrive/<your path>"
+```
+
+The Drive mount is skipped automatically outside Colab, so the notebooks also open and run against a local directory. Notebook 04 still carries the Drive path in its first cell and will get the same treatment on its next run.
 
 ### 1. Clone
 
